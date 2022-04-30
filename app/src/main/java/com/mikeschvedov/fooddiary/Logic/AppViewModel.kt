@@ -19,6 +19,10 @@ class AppViewModel(val repository: FoodRepository) : ViewModel() {
     fun insert(food: FoodEntry) = viewModelScope.launch {
         repository.insert(food)
     }
+
+    fun delete(food: FoodEntry) = viewModelScope.launch {
+        repository.delete(food)
+    }
 }
 
 class AppViewModelFactory(private val repository: FoodRepository) : ViewModelProvider.Factory {

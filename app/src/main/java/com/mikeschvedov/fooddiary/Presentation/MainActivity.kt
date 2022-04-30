@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mikeschvedov.fooddiary.Data.Database.FoodEntry
 import com.mikeschvedov.fooddiary.Logic.AppViewModel
 import com.mikeschvedov.fooddiary.Logic.AppViewModelFactory
@@ -38,6 +37,31 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerview.adapter = adapter
         binding.recyclerview.layoutManager = LinearLayoutManager(this)
+
+        //
+        adapter.setOnItemClickListener(object: FoodEntriesListAdapter.onClickListenerInterface{
+            override fun onItemClick(position: Int) {
+
+                val builder = AlertDialog.Builder(this@MainActivity, R.style.MyDialogTheme)
+                builder.setTitle("אזהרה")
+                builder.setMessage("האם ברצונך למחוק את הרשומה?")
+
+                builder.setPositiveButton("כן") { dialog, which ->
+
+                    appViewModel.allWords.value?.let { appViewModel.delete(it[position]) }
+
+                }
+
+                builder.setNegativeButton("לא") { dialog, which ->
+                    Toast.makeText(applicationContext,
+                        "Canceled", Toast.LENGTH_SHORT).show()
+                }
+                builder.show()
+
+
+            }
+        })
+
 
         // Add an observer on the LiveData returned by getAllEntries.
         // The onChanged() method fires when the observed data changes and the activity is

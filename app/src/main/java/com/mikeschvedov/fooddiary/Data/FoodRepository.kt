@@ -21,4 +21,10 @@ class FoodRepository(private val foodDao: FoodEntryDao) {
     suspend fun insert(foodEntry: FoodEntry) {
         foodDao.insertEntry(foodEntry)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(foodEntry: FoodEntry){
+        foodDao.deleteEntry(foodEntry)
+    }
 }
