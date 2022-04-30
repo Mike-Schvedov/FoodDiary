@@ -2,10 +2,9 @@ package com.mikeschvedov.fooddiary
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import com.mikeschvedov.fooddiary.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.mikeschvedov.fooddiary.databinding.ActivityNewEntryBinding
 
 class NewEntryActivity : AppCompatActivity() {
@@ -24,9 +23,15 @@ class NewEntryActivity : AppCompatActivity() {
                 if (TextUtils.isEmpty(editWord.text)) {
                     setResult(Activity.RESULT_CANCELED, replyIntent)
                 } else {
+
+
                     val word = editWord.text.toString()
-                    replyIntent.putExtra(EXTRA_REPLY, word)
+                    val number = 20
+                    // Passing the values we got from the form as extras
+                    replyIntent.putExtra("name_extra", word)
+                    replyIntent.putExtra("num_extra", number)
                     setResult(Activity.RESULT_OK, replyIntent)
+
                 }
                 finish()
             }
@@ -35,7 +40,4 @@ class NewEntryActivity : AppCompatActivity() {
 
     }
 
-    companion object {
-        const val EXTRA_REPLY = "com.example.android.wordlistsql.REPLY"
-    }
 }

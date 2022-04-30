@@ -34,22 +34,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-        val allFoodList = mutableListOf(
-            FoodEntry(
-                "coffee",
-                200,
-                "20/10"
-            ),
-        )
-
         val adapter = FoodEntriesListAdapter()
 
         binding.recyclerview.adapter = adapter
         binding.recyclerview.layoutManager = LinearLayoutManager(this)
 
-        // Add an observer on the LiveData returned by getAlphabetizedWords.
+        // Add an observer on the LiveData returned by getAllEntries.
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
         appViewModel.allWords.observe(this) { words ->
@@ -57,28 +47,41 @@ class MainActivity : AppCompatActivity() {
             words.let { adapter.submitList(it) }
         }
 
-        val fab = findViewById<FloatingActionButton>(R.id.fab)
-        fab.setOnClickListener {
+
+        binding.fab.setOnClickListener {
             val intent = Intent(this@MainActivity, NewEntryActivity::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
         }
     }
 
 
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
         super.onActivityResult(requestCode, resultCode, intentData)
 
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            intentData?.getStringExtra(NewEntryActivity.EXTRA_REPLY)?.let { reply ->
-                val word = FoodEntry(reply, 10, "20/10")
-                appViewModel.insert(word)
+
+            //initializing variables to store our extra results
+            var tempName: String = ""
+            var tempNum: Int = 0
+
+            // Getting name extra
+            intentData?.getStringExtra("name_extra")?.let { reply ->
+                tempName = reply
             }
+            // Getting name extra
+            intentData?.getIntExtra("num_extra", 0)?.let { reply ->
+                tempNum = reply
+            }
+
+            //Creating a temp Food Entry item and passing the extras into it
+            val foodEntry = FoodEntry(tempName,tempNum, "20/10")
+            //Add the Food Entry into the Database
+            appViewModel.insert(foodEntry)
+
         } else {
             Toast.makeText(
                 applicationContext,
-                "empty not saved",
+                "Something is missing!",
                 Toast.LENGTH_LONG
             ).show()
         }
