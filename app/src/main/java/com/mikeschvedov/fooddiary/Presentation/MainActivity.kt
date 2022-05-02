@@ -19,6 +19,8 @@ import com.mikeschvedov.whatieat.FoodEntriesListAdapter
 
 class MainActivity : AppCompatActivity() {
 
+    //TODO
+
     private lateinit var binding: ActivityMainBinding
 
     private val newWordActivityRequestCode = 1
