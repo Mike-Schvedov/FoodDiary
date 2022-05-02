@@ -1,6 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/app_background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -10,34 +13,165 @@
 
         <SearchView
             android:id="@+id/searchview_xml"
+            app:theme="@style/AppSearchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="30dp"
-            android:queryHint="חיפוש"
-            android:padding="2dp"
-            android:iconifiedByDefault="false"
             android:layout_marginBottom="16dp"
+            android:iconifiedByDefault="false"
+            android:padding="2dp"
             android:queryBackground="@color/transparent"
-            android:background="@drawable/searchview_background" />
+            android:queryHint="חיפוש" />
 
         <ListView
             android:id="@+id/listview_xml"
+            android:divider="@color/searchview_bg"
+            android:dividerHeight="1.0sp"
+            android:padding="8dp"
+            android:layout_margin="6dp"
+            android:clickable="true"
             android:layout_width="match_parent"
+            android:background="@color/list_item_grey"
             android:layout_height="500dp" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/submiting_section_xml"
         android:layout_width="match_parent"
-        android:layout_height="400dp">
+        android:layout_height="400dp"
+        android:background="@color/searchview_bg"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <Button
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/total_calories_xml"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="160"
+                    android:textStyle="bold"
+                    android:textColor="@color/navigation_bar_dark_grey"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:text="קלוריות"
+                    android:textStyle="bold"
+                    android:textColor="@color/navigation_bar_dark_grey"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="="
+
+                android:textStyle="bold"
+                android:textColor="@color/navigation_bar_dark_grey"
+                android:textSize="26dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/items_calories_per100_xml"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="160"
+                    android:textStyle="bold"
+                    android:textColor="@color/navigation_bar_dark_grey"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="קלוריות / 100 גרם"
+                    android:textStyle="bold"
+                    android:textColor="@color/navigation_bar_dark_grey"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="12dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="X"
+                android:textStyle="bold"
+                android:textColor="@color/navigation_bar_dark_grey"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/grams_edittext_xml"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginEnd="22dp"
+                android:layout_weight="1"
+                android:paddingVertical="8dp"
+                android:gravity="center"
+                android:background="@drawable/custom_input_field"
+                android:textColor="@color/navigation_bar_dark_grey"
+                android:textColorHint="@color/navigation_bar_dark_grey"
+                android:hint="משקל בגרם"
+                android:textSize="8dp"
+                android:textStyle="bold"
+                android:inputType="number" />
+
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_save"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="@dimen/big_padding"
-            android:background="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="8dp"
+            android:backgroundTint="@color/navigation_bar_dark_grey"
+            android:background="@color/navigation_bar_dark_grey"
             android:text="הוסף"
+
             android:textColor="@color/white" />
     </LinearLayout>
 

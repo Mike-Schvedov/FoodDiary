@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.imageview.ShapeableImageView
 import com.mikeschvedov.fooddiary.Data.Database.FoodEntry
 import com.mikeschvedov.fooddiary.R
 
@@ -31,11 +32,13 @@ class FoodEntriesListAdapter : ListAdapter<FoodEntry, FoodEntriesListAdapter.Foo
         // We get needed references to all items in View (our XML)
         private val gameName_xml: TextView = itemView.findViewById(R.id.gameName_xml)
         private val totalhours_xml: TextView = itemView.findViewById(R.id.gameTotalHours_xml)
+        private val gameImage_xml: ShapeableImageView = itemView.findViewById(R.id.gameImage_xml)
 
         // We provide the data we get and bind it to them
-        fun bind(text: String?, calories: Int) {
+        fun bind(text: String?, calories: Int, date: Int) {
             gameName_xml.text = text
             totalhours_xml.text = calories.toString()
+            gameImage_xml.setImageResource(date)
         }
 
         init {
@@ -66,7 +69,7 @@ class FoodEntriesListAdapter : ListAdapter<FoodEntry, FoodEntriesListAdapter.Foo
     //We bind the data we got to every view holder
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val currentItem = getItem(position)
-        holder.bind(currentItem.foodname, currentItem.calories)
+        holder.bind(currentItem.foodname, currentItem.calories, currentItem.image)
     }
 
 
