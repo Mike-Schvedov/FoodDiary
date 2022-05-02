@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -107,11 +108,7 @@ class MainActivity : AppCompatActivity() {
             appViewModel.insert(foodEntry)
 
         } else {
-            Toast.makeText(
-                applicationContext,
-                "Something went wrong",
-                Toast.LENGTH_LONG
-            ).show()
+           Log.d("Main", "user went back.")
         }
     }
 }

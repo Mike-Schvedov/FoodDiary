@@ -7,10 +7,8 @@ class FoodArchive {
     companion object{
 
         var foodDataList = arrayListOf<FoodSaved>(
-            FoodSaved("קפה", 10, R.drawable.ic_baseline_add_24),
-            FoodSaved("מנגו", 80, R.drawable.ic_baseline_add_24),
             FoodSaved("אבוקדו", 160, R.drawable.avocado),
-            FoodSaved("חלב", 60, R.drawable.ic_baseline_add_24),
+            FoodSaved("חלב", 60, R.drawable.milk),
             )
 
     }

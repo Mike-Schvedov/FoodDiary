@@ -11,9 +11,9 @@
         <item name="colorSecondaryVariant">@color/navigation_bar_dark_grey</item>
         <item name="colorOnSecondary">#000000</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/navigation_bar_dark_grey</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <!-- Navigation Bar Color -->
-        <item name="android:navigationBarColor">@color/navigation_bar_dark_grey</item>
+        <item name="android:navigationBarColor">@color/black</item>
     </style>
 
 
