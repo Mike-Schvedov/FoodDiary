@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mikeschvedov.fooddiary.Data.Database.FoodEntry
 import com.mikeschvedov.fooddiary.Logic.AppViewModel
 import com.mikeschvedov.fooddiary.Logic.AppViewModelFactory
-import com.mikeschvedov.fooddiary.NewEntryActivity
 import com.mikeschvedov.fooddiary.R
 import com.mikeschvedov.fooddiary.Util.FoodApplication
 import com.mikeschvedov.fooddiary.databinding.ActivityMainBinding

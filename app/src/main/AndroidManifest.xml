@@ -11,7 +11,7 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.FoodDiary">
         <activity
-            android:name=".NewEntryActivity"
+            android:name=".Presentation.NewEntryActivity"
             android:exported="false" />
         <activity
             android:name=".Presentation.MainActivity"
