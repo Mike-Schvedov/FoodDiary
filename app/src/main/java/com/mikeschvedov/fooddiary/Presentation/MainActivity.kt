@@ -85,26 +85,31 @@ class MainActivity : AppCompatActivity() {
 
             //initializing variables to store our extra results
             var tempName: String = ""
-            var tempNum: Int = 0
+            var tempCalories: Int = 0
+            var tempImage: Int = 0
 
             // Getting name extra
             intentData?.getStringExtra("name_extra")?.let { reply ->
                 tempName = reply
             }
-            // Getting name extra
-            intentData?.getIntExtra("num_extra", 0)?.let { reply ->
-                tempNum = reply
+            // Getting calories extra
+            intentData?.getIntExtra("calories_extra", 0)?.let { reply ->
+                tempCalories = reply
+            }
+            // Getting image extra
+            intentData?.getIntExtra("image_extra", 0)?.let { reply ->
+                tempImage = reply
             }
 
             //Creating a temp Food Entry item and passing the extras into it
-            val foodEntry = FoodEntry(tempName,tempNum, "20/10")
+            val foodEntry = FoodEntry(tempName,tempCalories, tempImage)
             //Add the Food Entry into the Database
             appViewModel.insert(foodEntry)
 
         } else {
             Toast.makeText(
                 applicationContext,
-                "Something is missing!",
+                "Something went wrong",
                 Toast.LENGTH_LONG
             ).show()
         }

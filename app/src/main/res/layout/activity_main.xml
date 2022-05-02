@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_background"
     tools:context=".Presentation.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -20,10 +21,12 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="descri"
-        android:src="@drawable/ic_plus_sign"
+        android:elevation="8dp"
+        android:src="@drawable/plusicon"
+        app:backgroundTint="@color/searchview_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
