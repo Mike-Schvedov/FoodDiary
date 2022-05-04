@@ -3,7 +3,9 @@ package com.mikeschvedov.fooddiary.Presentation
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView.OnItemClickListener
@@ -15,6 +17,7 @@ import com.mikeschvedov.fooddiary.Data.LocalData.FoodArchive
 import com.mikeschvedov.fooddiary.Data.Models.FoodSaved
 import com.mikeschvedov.fooddiary.R
 import com.mikeschvedov.fooddiary.databinding.ActivityNewEntryBinding
+import kotlin.math.roundToInt
 
 
 class NewEntryActivity : AppCompatActivity() {
@@ -50,9 +53,9 @@ class NewEntryActivity : AppCompatActivity() {
                     searchviewXml.clearFocus()
 
                     // We check if the one of those name matches the query
-                  //  if (FoodArchive.foodDataList.contains(query)) {
-                 //       listAdapter.filter.filter(query)
-                  //  }
+                    //  if (FoodArchive.foodDataList.contains(query)) {
+                    //       listAdapter.filter.filter(query)
+                    //  }
                     return false
                 }
 
@@ -66,7 +69,6 @@ class NewEntryActivity : AppCompatActivity() {
 
 
             })
-
 
 
             // When we click on an item it will appear in the search view
@@ -86,7 +88,31 @@ class NewEntryActivity : AppCompatActivity() {
 
             })
 
+            // When we type something in the edit text the total calories will update in real time
+            gramsEdittextXml.addTextChangedListener(object : TextWatcher {
+                override fun onTextChanged(
+                    s: CharSequence, start: Int, before: Int,
+                    count: Int
+                ) {
+                    if (gramsEdittextXml.text.isNotEmpty()) {
+                        val caloriesPerGram = thisItemsCalPer100.toDouble() / 100
+                        val gramInput = gramsEdittextXml.text.toString().toInt()
 
+                        totalCaloriesXml.text = (caloriesPerGram * gramInput).roundToInt().toString()
+
+                    }else{
+                        totalCaloriesXml.text = "0"
+                    }
+                }
+
+                override fun beforeTextChanged(
+                    s: CharSequence, start: Int, count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun afterTextChanged(s: Editable) {}
+            })
 
 
             // Save Button
@@ -94,7 +120,7 @@ class NewEntryActivity : AppCompatActivity() {
 
                 val insertedGrams: String = gramsEdittextXml.text.toString()
 
-                if(validateWeight(insertedGrams)){
+                if (validateWeight(insertedGrams)) {
 
                     Log.d("newEntry", "BO is True")
 
@@ -104,11 +130,13 @@ class NewEntryActivity : AppCompatActivity() {
                         finish()
                     } else {
 
+                        // Creating temporary variables for the data to pass as extras
                         val itemName = searchviewXml.query.toString()
                         val calories = calculateFinalCalories(insertedGrams.toInt(), thisItemsCalPer100)
                         val image = selectedImageUrl
 
                         // Passing the values we got from the form as extras
+                        replyIntent.putExtra("name_extra", itemName)
                         replyIntent.putExtra("name_extra", itemName)
                         replyIntent.putExtra("calories_extra", calories)
                         replyIntent.putExtra("image_extra", image)
@@ -117,7 +145,7 @@ class NewEntryActivity : AppCompatActivity() {
                     }
 
 
-                }else{
+                } else {
 
                     Toast.makeText(
                         applicationContext,
@@ -125,8 +153,6 @@ class NewEntryActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 }
-
-
 
 
             }

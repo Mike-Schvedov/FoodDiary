@@ -2,6 +2,7 @@ package com.mikeschvedov.fooddiary.Data.Database
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
+import java.util.*
 
 @Dao
 interface FoodEntryDao {
@@ -17,4 +18,7 @@ interface FoodEntryDao {
 
     @Delete
     suspend fun deleteEntry(food: FoodEntry)
+
+    @Query("SELECT * FROM food_table WHERE date_added = :targetDate")
+    fun getAllWithDate(targetDate: Date): Flow<List<FoodEntry>>
 }

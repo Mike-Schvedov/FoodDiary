@@ -14,12 +14,15 @@ import com.mikeschvedov.fooddiary.Logic.AppViewModel
 import com.mikeschvedov.fooddiary.Logic.AppViewModelFactory
 import com.mikeschvedov.fooddiary.R
 import com.mikeschvedov.fooddiary.Util.FoodApplication
+import com.mikeschvedov.fooddiary.Util.TodaysDate
 import com.mikeschvedov.fooddiary.databinding.ActivityMainBinding
 import com.mikeschvedov.whatieat.FoodEntriesListAdapter
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    //TODO
+    //TODO working on laptop 3/5/22
 
     private lateinit var binding: ActivityMainBinding
 
@@ -46,7 +49,17 @@ class MainActivity : AppCompatActivity() {
 
                 val builder = AlertDialog.Builder(this@MainActivity, R.style.MyDialogTheme)
                 builder.setTitle("אזהרה")
-                builder.setMessage("האם ברצונך למחוק את הרשומה?")
+
+                // FOR TESTING --------------------------------------------------- VVVVV
+
+                //If todays date equals the date of the item
+                if (TodaysDate.todaysDateFormatted == convertDateObjectToFormattedString(appViewModel.allWords.value?.get(position)?.date)){
+                    builder.setMessage("היום של המוצר שווה להיום")
+                }else{
+                    builder.setMessage("היום של המוצר לא שווה להיום")
+
+                }
+
 
                 builder.setPositiveButton("כן") { dialog, which ->
 
@@ -63,6 +76,8 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
+
+        //TODO - When we are ready to get all data by date, we can switch between allWords to getAllEntriesByDate()
 
 
         // Add an observer on the LiveData returned by getAllEntries.
@@ -104,13 +119,28 @@ class MainActivity : AppCompatActivity() {
                 tempImage = reply
             }
 
+
+
             //Creating a temp Food Entry item and passing the extras into it
-            val foodEntry = FoodEntry(tempName,tempCalories, tempImage)
+            val foodEntry = FoodEntry(tempName,tempCalories, tempImage, getCurrentDateTime())
             //Add the Food Entry into the Database
             appViewModel.insert(foodEntry)
 
         } else {
            Log.d("Main", "user went back.")
         }
+    }
+
+    private fun getCurrentDateTime(): Date {
+
+            return Calendar.getInstance().time
+
+    }
+
+
+    // Creating a formatted string of today's date
+    fun convertDateObjectToFormattedString(dateObject: Date?): String {
+
+        return SimpleDateFormat(TodaysDate.DAY_FORMAT, Locale.getDefault()).format(dateObject)
     }
 }

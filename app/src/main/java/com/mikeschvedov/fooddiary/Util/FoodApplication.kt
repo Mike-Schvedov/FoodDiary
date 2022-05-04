@@ -2,9 +2,7 @@ package com.mikeschvedov.fooddiary.Util
 
 import android.app.Application
 import com.mikeschvedov.fooddiary.Data.Database.FoodDatabase
-import com.mikeschvedov.fooddiary.Data.FoodRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
+import com.mikeschvedov.fooddiary.Data.Repository.FoodRepository
 
 class FoodApplication : Application() {
     // No need to cancel this scope as it'll be torn down with the process

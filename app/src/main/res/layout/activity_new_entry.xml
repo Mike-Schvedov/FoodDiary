@@ -63,10 +63,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="160"
+                    android:text="0"
                     android:textStyle="bold"
                     android:textColor="@color/navigation_bar_dark_grey"
                     android:textSize="18dp" />
@@ -124,7 +123,7 @@
                     android:text="קלוריות / 100 גרם"
                     android:textStyle="bold"
                     android:textColor="@color/navigation_bar_dark_grey"
-                    android:textSize="10dp" />
+                    android:textSize="8dp" />
             </LinearLayout>
 
             <TextView
@@ -148,6 +147,7 @@
                 android:layout_weight="1"
                 android:paddingVertical="8dp"
                 android:gravity="center"
+                android:maxLength="4"
                 android:background="@drawable/custom_input_field"
                 android:textColor="@color/navigation_bar_dark_grey"
                 android:textColorHint="@color/navigation_bar_dark_grey"
