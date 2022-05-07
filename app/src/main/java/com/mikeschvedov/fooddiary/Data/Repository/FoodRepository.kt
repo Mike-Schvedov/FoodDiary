@@ -15,7 +15,7 @@ class FoodRepository(private val foodDao: FoodEntryDao) {
     val allWords: Flow<List<FoodEntry>> = foodDao.getAllEntries()
 
     // Unlikw allEntries, now we need to provide a paramenter, so we created a function
-    fun getAllEntriesByDate(date: Date): Flow<List<FoodEntry>> {
+    fun getAllEntriesByDate(date: String): Flow<List<FoodEntry>> {
         return foodDao.getAllWithDate(date)
     }
 

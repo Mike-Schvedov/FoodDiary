@@ -16,7 +16,7 @@ data class FoodEntry(
     @ColumnInfo(name = "image_url")
     val image: Int,
     @ColumnInfo(name = "date_added")
-    val date: Date,
+    val date: String,
     ){
     @PrimaryKey(autoGenerate = true)
     var foodId: Int = 0 // or foodId: Int? = null

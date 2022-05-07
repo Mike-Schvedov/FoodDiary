@@ -20,5 +20,5 @@ interface FoodEntryDao {
     suspend fun deleteEntry(food: FoodEntry)
 
     @Query("SELECT * FROM food_table WHERE date_added = :targetDate")
-    fun getAllWithDate(targetDate: Date): Flow<List<FoodEntry>>
+    fun getAllWithDate(targetDate: String): Flow<List<FoodEntry>>
 }

@@ -6,10 +6,19 @@ import java.util.*
 class TodaysDate {
     companion object{
         // Creating an official format to use
-        var DAY_FORMAT = "yyyy/MM/dd"
+        var DAY_FORMAT = "dd/MM/yyyy"
         // Creating a Date object out of todays Calendar
-        private var todaysDate: Date = Calendar.getInstance().time
+        var todaysDate: Date = Calendar.getInstance().time
         // Formatting todays Date object to become a string
-        val todaysDateFormatted = SimpleDateFormat(DAY_FORMAT, Locale.getDefault()).format(todaysDate)
+        val todaysDateFormatted: String = SimpleDateFormat(DAY_FORMAT, Locale.getDefault()).format(todaysDate)
+
+        val firstDateInstalled: String = "s"
+
+        fun daysToAdd(daysToAdd: Int, date: Date): Date {
+            val cal = Calendar.getInstance()
+            cal.time = date
+            cal.add(Calendar.DATE, daysToAdd)
+            return cal.time
+        }
     }
 }

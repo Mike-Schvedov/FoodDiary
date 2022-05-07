@@ -1,8 +1,12 @@
 package com.mikeschvedov.fooddiary.Logic
 
+import android.content.Context
+import android.view.View
 import androidx.lifecycle.*
 import com.mikeschvedov.fooddiary.Data.Database.FoodEntry
+import com.mikeschvedov.fooddiary.Data.Repository.DataStoreRepository
 import com.mikeschvedov.fooddiary.Data.Repository.FoodRepository
+import com.mikeschvedov.fooddiary.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -15,7 +19,7 @@ class AppViewModel(val repository: FoodRepository) : ViewModel() {
     val allWords: LiveData<List<FoodEntry>> = repository.allWords.asLiveData()
 
     // Get all Entries by Date (We also pass the date)
-    fun getAllEntriesByDate (date: Date): LiveData<List<FoodEntry>>{
+    fun getAllEntriesByDate (date: String): LiveData<List<FoodEntry>>{
         return repository.getAllEntriesByDate(date).asLiveData()
     }
 
@@ -30,7 +34,22 @@ class AppViewModel(val repository: FoodRepository) : ViewModel() {
     fun delete(food: FoodEntry) = viewModelScope.launch {
         repository.delete(food)
     }
+
+    suspend fun decideArrowVisibility(context: Context, binding: ActivityMainBinding, date: String ) {
+        DataStoreRepository.readFirstDate(context).collect { stringBoolean ->
+            // if the string we get for DataStore is equals the current date
+            if (stringBoolean == date) {
+                println("COMPARING FOR STORAGE: if stringBoolen(Date the app was installed): $stringBoolean equals currentDate $date}")
+
+                binding.arrowBtnPrevDay.visibility = View.INVISIBLE
+            } else {
+                binding.arrowBtnPrevDay.visibility = View.VISIBLE
+            }
+        }
+    }
 }
+
+
 
 class AppViewModelFactory(private val repository: FoodRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

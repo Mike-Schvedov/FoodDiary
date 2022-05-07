@@ -150,9 +150,9 @@
                 android:maxLength="4"
                 android:background="@drawable/custom_input_field"
                 android:textColor="@color/navigation_bar_dark_grey"
-                android:textColorHint="@color/navigation_bar_dark_grey"
-                android:hint="משקל בגרם"
-                android:textSize="8dp"
+                android:textColorHint="#A3A0A0"
+                android:textSize="12dp"
+                android:hint="גרם"
                 android:textStyle="bold"
                 android:inputType="number" />
 
