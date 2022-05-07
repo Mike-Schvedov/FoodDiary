@@ -1,14 +1,17 @@
 package com.mikeschvedov.fooddiary.Presentation
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
@@ -36,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     private val newWordActivityRequestCode = 1
 
     private var dynamicTodayDate: Date = TodaysDate.todaysDate
+    private var dailyTotalCalories: Int = 0
 
 
     //Creating the view model
@@ -79,22 +83,23 @@ class MainActivity : AppCompatActivity() {
         adapter.setOnItemClickListener(object :
             FoodEntriesListAdapter.onClickListenerInterface {
             override fun onItemClick(position: Int) {
+
                 // Create an AlertDialog
                 val builder = AlertDialog.Builder(this@MainActivity, R.style.MyDialogTheme)
-                builder.apply {
-                    setTitle("אזהרה")
-                    setMessage("האם למחוק את הרשומה?")
-                    setPositiveButton("כן") { _, _ ->
-                        appViewModel.allWords.value?.let { appViewModel.delete(it[position]) }
-                    }
-                    setNegativeButton("לא") { _, _ ->
-                        Toast.makeText(
-                            applicationContext,
-                            "Canceled", Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                    builder.show()
+                builder.setTitle("אזהרה")
+                builder.setMessage("האם למחוק את הרשומה?")
+                builder.setPositiveButton("כן") { dialog, which ->
+                    appViewModel.delete(adapter.currentList[position])
+                    println("Deleted: ${adapter.currentList[position]}")
                 }
+                builder.setNegativeButton("לא") { dialog, which ->
+                    Toast.makeText(
+                        applicationContext,
+                        "Canceled", Toast.LENGTH_SHORT
+                    ).show()
+                }
+                builder.show()
+
             }
         })
 
@@ -117,15 +122,14 @@ class MainActivity : AppCompatActivity() {
         }
         // Clicking to go to Next Day
         binding.arrowBtnPrevDay.setOnClickListener {
-            arrowConfiguration(adapter, 1)
+            arrowConfiguration(adapter, -1)
         }
         // Clicking to go to Previous Day
         binding.arrowBtnNextDay.setOnClickListener {
-            arrowConfiguration(adapter, -1)
+            arrowConfiguration(adapter, 1)
         }
 
     } // Closing MainActivity
-
 
 
     private fun arrowConfiguration(adapter: FoodEntriesListAdapter, direction: Int) {
@@ -145,12 +149,31 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun observeChangeInRecyclerView(adapter: FoodEntriesListAdapter, relevantDate: String) {
 
         appViewModel.getAllEntriesByDate(relevantDate)
-            .observe(this) { words ->
+            .observe(this) { entries ->
                 // Update the cached copy of the words in the adapter.
-                words.let { adapter.submitList(it) }
+                entries.let { adapter.submitList(it) }
+                // We add all calories to totalCal
+                var totalCal: Int = 0
+                for (entry in entries) {
+                    totalCal += entry.calories
+                }
+                binding.caloriesEatenTodayXml.text = totalCal.toString()
+                if (totalCal < 1000) {
+                    binding.caloriesEatenTodayXml.setTextColor(
+                        ContextCompat.getColor(
+                            applicationContext,
+                            R.color.green
+                        )
+                    )
+                } else if (totalCal in 1001..1499) {
+                    binding.caloriesEatenTodayXml.setTextColor(Color.YELLOW)
+                } else {
+                    binding.caloriesEatenTodayXml.setTextColor(Color.RED)
+                }
             }
     }
 

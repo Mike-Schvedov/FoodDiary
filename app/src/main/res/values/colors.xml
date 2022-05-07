@@ -12,4 +12,5 @@
     <color name="searchview_bg">#DDDADA</color>
     <color name="navigation_bar_dark_grey">#717171</color>
     <color name="list_item_grey">#EDEDED</color>
+    <color name="green">#4CAF50</color>
 </resources>
