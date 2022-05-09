@@ -8,6 +8,8 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -39,7 +41,16 @@ class MainActivity : AppCompatActivity() {
     private val newWordActivityRequestCode = 1
 
     private var dynamicTodayDate: Date = TodaysDate.todaysDate
+
     private var dailyTotalCalories: Int = 0
+
+    val adapter = FoodEntriesListAdapter()
+
+    val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
+    val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
+    val slideOpen: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.slide_open_anim) }
+    val slideClose: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.slide_close_anim) }
+
 
 
     //Creating the view model
@@ -70,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         /* ------------- Setting the RecyclerView Adapter ------------- */
-        val adapter = FoodEntriesListAdapter()
+
         binding.recyclerview.adapter = adapter
         binding.recyclerview.layoutManager = LinearLayoutManager(this)
 
@@ -105,8 +116,14 @@ class MainActivity : AppCompatActivity() {
 
         /* ------------- Clicking on the Floating Action Button ------------- */
         binding.fab.setOnClickListener {
+            appViewModel.onFloatingButtonClicked(binding, rotateClose, rotateOpen, slideClose, slideOpen)
+        }
+
+        binding.fabAddEntry.setOnClickListener {
             val intent = Intent(this@MainActivity, NewEntryActivity::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
+            // So we trigger the fab to be closed
+            appViewModel.onFloatingButtonClicked(binding, rotateClose, rotateOpen, slideClose, slideOpen)
         }
 
         /* ------------- Setting The Date and Day Changing Arrows ------------- */
@@ -130,6 +147,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     } // Closing MainActivity
+
+    //TODO Move all to app model --------------------------
 
 
     private fun arrowConfiguration(adapter: FoodEntriesListAdapter, direction: Int) {
@@ -206,6 +225,7 @@ class MainActivity : AppCompatActivity() {
                 FoodEntry(tempName, tempCalories, tempImage, dateToFormatted(dynamicTodayDate))
             //Add the Food Entry into the Database
             appViewModel.insert(foodEntry)
+            observeChangeInRecyclerView(adapter, dateToFormatted(dynamicTodayDate))
 
         } else {
             Log.d("Main", "user went back.")
