@@ -8,7 +8,7 @@
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">#000000</item>
-        <item name="colorSecondaryVariant">@color/navigation_bar_dark_grey</item>
+        <item name="colorSecondaryVariant">@color/app_brown_1</item>
         <item name="colorOnSecondary">#000000</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
@@ -37,9 +37,9 @@
         <!-- Query Text Color -->
         <item name="android:textColorPrimary">@color/black</item>
         <!-- Hint Color -->
-        <item name="android:textColorHint">@color/navigation_bar_dark_grey</item>
+        <item name="android:textColorHint">@color/app_brown_1</item>
         <!-- Icon Color -->
         <item name="android:tint">@color/black</item>
-        <item name="android:background">@color/searchview_bg</item>
+        <item name="android:background">@color/app_brown_2</item>
     </style>
 </resources>

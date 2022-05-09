@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/app_background"
+    android:background="@color/app_brown_3"
     android:orientation="vertical">
 
     <LinearLayout
@@ -26,13 +26,13 @@
 
         <ListView
             android:id="@+id/listview_xml"
-            android:divider="@color/searchview_bg"
+            android:divider="@color/app_brown_2"
             android:dividerHeight="1.0sp"
             android:padding="8dp"
             android:layout_margin="6dp"
             android:clickable="true"
             android:layout_width="match_parent"
-            android:background="@color/list_item_grey"
+            android:background="@color/app_background"
             android:layout_height="500dp" />
     </LinearLayout>
 
@@ -40,7 +40,7 @@
         android:id="@+id/submiting_section_xml"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:background="@color/searchview_bg"
+        android:background="@color/app_brown_2"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -67,7 +67,7 @@
                     android:gravity="center"
                     android:text="0"
                     android:textStyle="bold"
-                    android:textColor="@color/navigation_bar_dark_grey"
+                    android:textColor="@color/darker_brown"
                     android:textSize="18dp" />
 
                 <TextView
@@ -79,7 +79,7 @@
 
                     android:text="קלוריות"
                     android:textStyle="bold"
-                    android:textColor="@color/navigation_bar_dark_grey"
+                    android:textColor="@color/darker_brown"
                     android:textSize="10dp" />
             </LinearLayout>
 
@@ -92,7 +92,7 @@
                 android:text="="
 
                 android:textStyle="bold"
-                android:textColor="@color/navigation_bar_dark_grey"
+                android:textColor="@color/darker_brown"
                 android:textSize="26dp" />
 
             <LinearLayout
@@ -111,7 +111,7 @@
                     android:gravity="center"
                     android:text="160"
                     android:textStyle="bold"
-                    android:textColor="@color/navigation_bar_dark_grey"
+                    android:textColor="@color/darker_brown"
                     android:textSize="18dp" />
 
                 <TextView
@@ -122,7 +122,7 @@
                     android:gravity="center"
                     android:text="קלוריות / 100 גרם"
                     android:textStyle="bold"
-                    android:textColor="@color/navigation_bar_dark_grey"
+                    android:textColor="@color/darker_brown"
                     android:textSize="8dp" />
             </LinearLayout>
 
@@ -135,7 +135,7 @@
                 android:gravity="center"
                 android:text="X"
                 android:textStyle="bold"
-                android:textColor="@color/navigation_bar_dark_grey"
+                android:textColor="@color/darker_brown"
                 android:textSize="18dp" />
 
             <EditText
@@ -149,8 +149,8 @@
                 android:gravity="center"
                 android:maxLength="4"
                 android:background="@drawable/custom_input_field"
-                android:textColor="@color/navigation_bar_dark_grey"
-                android:textColorHint="#A3A0A0"
+                android:textColor="@color/darker_brown"
+                android:textColorHint="@color/app_brown_1"
                 android:textSize="12dp"
                 android:hint="גרם"
                 android:textStyle="bold"
@@ -168,8 +168,8 @@
             android:textStyle="bold"
             android:gravity="center_vertical|center_horizontal"
             android:padding="8dp"
-            android:backgroundTint="@color/navigation_bar_dark_grey"
-            android:background="@color/navigation_bar_dark_grey"
+            android:backgroundTint="@color/darker_brown"
+            android:background="@drawable/custom_button_shape"
             android:text="הוסף"
 
             android:textColor="@color/white" />
