@@ -9,5 +9,5 @@ class FoodApplication : Application() {
     // Using by lazy so the database and the repository are only created when they're needed
     // rather than when the application starts
     val database by lazy { FoodDatabase.getDatabase(this) }
-    val repository by lazy { FoodRepository(database.foodDao()) }
+    val repository by lazy { FoodRepository(database.foodDao(), database.waterDao()) }
 }

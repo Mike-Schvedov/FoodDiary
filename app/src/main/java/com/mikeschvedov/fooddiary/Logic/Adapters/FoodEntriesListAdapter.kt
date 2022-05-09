@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
-import com.mikeschvedov.fooddiary.Data.Database.FoodEntry
+import com.mikeschvedov.fooddiary.Data.Database.Entities.FoodEntry
 import com.mikeschvedov.fooddiary.R
 
 

@@ -47,7 +47,6 @@ class NewEntryActivity : AppCompatActivity() {
 
             // Setting the list Adapter
             searchviewXml.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
                 // Runs when the user presses enter inside the search view
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     searchviewXml.clearFocus()
@@ -66,10 +65,7 @@ class NewEntryActivity : AppCompatActivity() {
                     listviewXml.visibility = View.VISIBLE
                     return false
                 }
-
-
             })
-
 
             // When we click on an item it will appear in the search view
             listviewXml.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
@@ -97,10 +93,10 @@ class NewEntryActivity : AppCompatActivity() {
                     if (gramsEdittextXml.text.isNotEmpty()) {
                         val caloriesPerGram = thisItemsCalPer100.toDouble() / 100
                         val gramInput = gramsEdittextXml.text.toString().toInt()
+                        totalCaloriesXml.text =
+                            (caloriesPerGram * gramInput).roundToInt().toString()
 
-                        totalCaloriesXml.text = (caloriesPerGram * gramInput).roundToInt().toString()
-
-                    }else{
+                    } else {
                         totalCaloriesXml.text = "0"
                     }
                 }
@@ -110,31 +106,25 @@ class NewEntryActivity : AppCompatActivity() {
                     after: Int
                 ) {
                 }
-
                 override fun afterTextChanged(s: Editable) {}
             })
 
 
             // Save Button
             buttonSave.setOnClickListener {
-
                 val insertedGrams: String = gramsEdittextXml.text.toString()
 
                 if (validateWeight(insertedGrams)) {
-
-                    Log.d("newEntry", "BO is True")
-
                     val replyIntent = Intent()
                     if (TextUtils.isEmpty(searchviewXml.toString())) {
                         setResult(Activity.RESULT_CANCELED, replyIntent)
                         finish()
                     } else {
-
                         // Creating temporary variables for the data to pass as extras
                         val itemName = searchviewXml.query.toString()
-                        val calories = calculateFinalCalories(insertedGrams.toInt(), thisItemsCalPer100)
+                        val calories =
+                            calculateFinalCalories(insertedGrams.toInt(), thisItemsCalPer100)
                         val image = selectedImageUrl
-
                         // Passing the values we got from the form as extras
                         replyIntent.putExtra("name_extra", itemName)
                         replyIntent.putExtra("name_extra", itemName)
@@ -143,18 +133,13 @@ class NewEntryActivity : AppCompatActivity() {
                         setResult(Activity.RESULT_OK, replyIntent)
                         finish()
                     }
-
-
                 } else {
-
                     Toast.makeText(
                         applicationContext,
                         "יש להכניס משקל תקין",
                         Toast.LENGTH_LONG
                     ).show()
                 }
-
-
             }
         }
 

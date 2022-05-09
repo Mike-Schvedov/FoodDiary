@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">FoodDiary</string>
-
+    <string name="mililiter">מ\"ל</string>
 </resources>

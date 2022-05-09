@@ -5,14 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import kotlinx.coroutines.CoroutineScope
+import com.mikeschvedov.fooddiary.Data.Database.Daos.FoodEntryDao
+import com.mikeschvedov.fooddiary.Data.Database.Daos.WaterEntryDao
+import com.mikeschvedov.fooddiary.Data.Database.Entities.FoodEntry
+import com.mikeschvedov.fooddiary.Data.Database.Entities.WaterEntry
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
-@Database(entities = arrayOf(FoodEntry::class), version = 1, exportSchema = false)
+@Database(entities = [FoodEntry::class, WaterEntry::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 public abstract class FoodDatabase : RoomDatabase() {
 
     abstract fun foodDao(): FoodEntryDao
+    abstract fun waterDao(): WaterEntryDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the same time.

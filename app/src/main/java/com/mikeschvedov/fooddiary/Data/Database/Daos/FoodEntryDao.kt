@@ -1,8 +1,8 @@
-package com.mikeschvedov.fooddiary.Data.Database
+package com.mikeschvedov.fooddiary.Data.Database.Daos
 
 import androidx.room.*
+import com.mikeschvedov.fooddiary.Data.Database.Entities.FoodEntry
 import kotlinx.coroutines.flow.Flow
-import java.util.*
 
 @Dao
 interface FoodEntryDao {
