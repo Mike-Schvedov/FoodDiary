@@ -187,6 +187,14 @@ class MainActivity : AppCompatActivity() {
             binding.fab.hide()
             binding.fab.isClickable = false
         }
+        binding.fabAddWeight.setOnClickListener {
+            // Opening WeightActivity
+            val intent = Intent(this, WeightActivity::class.java).apply {
+
+            }
+            startActivity(intent)
+
+        }
         /* ------------- CLICKING ON THE ADD WATER SCREEN ------------- */
         //  Clicking on the add water screen "add" button
         binding.addButton.setOnClickListener {
@@ -218,7 +226,7 @@ class MainActivity : AppCompatActivity() {
             // Closing the screen
             closingTheWaterScreen()
         }
-    } // Closing MainActivity
+    } // Closing onCreate
 
     private fun closingTheWaterScreen() {
         binding.addWaterLayout.visibility = View.GONE

@@ -5,7 +5,7 @@ class FeatureToAdd {
     // -------- Statistics page :
     // weight graph + calories
 
-    // Add weight, add water
+    // Add weight page
 
 
 }

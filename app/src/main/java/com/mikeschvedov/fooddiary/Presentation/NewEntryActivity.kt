@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.SearchView
+
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.mikeschvedov.fooddiary.Data.LocalData.FoodArchive
@@ -46,7 +46,8 @@ class NewEntryActivity : AppCompatActivity() {
             listviewXml.adapter = listAdapter
 
             // Setting the list Adapter
-            searchviewXml.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            searchviewXml.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+                androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 // Runs when the user presses enter inside the search view
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     searchviewXml.clearFocus()

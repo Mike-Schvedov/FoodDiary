@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FoodDiary</string>
     <string name="mililiter">מ\"ל</string>
+    <string name="kilo">ק\"ג</string>
 </resources>

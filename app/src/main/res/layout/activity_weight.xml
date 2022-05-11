@@ -1,0 +1,121 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    tools:context=".Presentation.WeightActivity">
+
+
+    <LinearLayout
+        android:id="@+id/arrow_panel"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/app_brown_1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/info_panel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/todays_date_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:fontFamily="@font/secular_one"
+            android:gravity="center_horizontal|center_vertical"
+            android:paddingHorizontal="16dp"
+            android:shadowColor="@color/white"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="4"
+            android:text="Weight Tracker"
+            android:textColor="@color/black"
+            android:textSize="28dp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/info_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_brown_2"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerview_weight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_panel">
+
+
+        <EditText
+            android:id="@+id/weight_input_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="22dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_input_field"
+            android:gravity="center"
+            android:hint="משקל"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
+            android:paddingVertical="8dp"
+            android:textColor="@color/darker_brown"
+            android:textColorHint="@color/app_brown_1"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_weight_button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="36dp"
+            android:background="@drawable/custom_button_shape"
+            android:backgroundTint="@color/darker_brown"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="8dp"
+            android:text="הוסף"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_weight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="72dp"
+        android:padding="@dimen/big_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_panel"
+        tools:listitem="@layout/recyclerview_item_weight" />
+
+    <LinearLayout
+        android:id="@+id/graph_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_brown_2"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_weight">
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.view.animation.Animation
 import androidx.lifecycle.*
 import com.mikeschvedov.fooddiary.Data.Database.Entities.FoodEntry
 import com.mikeschvedov.fooddiary.Data.Database.Entities.WaterEntry
+import com.mikeschvedov.fooddiary.Data.Database.Entities.WeightEntry
 import com.mikeschvedov.fooddiary.Data.Repository.DataStoreRepository
 import com.mikeschvedov.fooddiary.Data.Repository.FoodRepository
 import com.mikeschvedov.fooddiary.databinding.ActivityMainBinding
@@ -41,6 +42,19 @@ class AppViewModel(val repository: FoodRepository) : ViewModel() {
 
     fun insertWater(water: WaterEntry) = viewModelScope.launch {
         repository.insertWater(water)
+    }
+
+    /* Weight Entry Related */
+    fun getAllWeightEntries(): LiveData<List<WeightEntry>> {
+        return repository.getAllWeightEntries().asLiveData()
+    }
+
+    fun insertWeight(weight: WeightEntry) = viewModelScope.launch {
+        repository.insertWeight(weight)
+    }
+
+    fun deleteWeight(weight: WeightEntry) = viewModelScope.launch {
+        repository.deleteWeight(weight)
     }
 
 /* -------------------------------- RELATED TO FLOATING ACTION BUTTONS --------------------------------  */

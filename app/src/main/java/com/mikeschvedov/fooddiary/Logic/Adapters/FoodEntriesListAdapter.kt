@@ -26,6 +26,18 @@ class FoodEntriesListAdapter : ListAdapter<FoodEntry, FoodEntriesListAdapter.Foo
         mListenerInterface = listenerInterface
     }
 
+    //We create the view holder
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
+        return FoodViewHolder.create(parent, mListenerInterface)
+    }
+
+    //We bind the data we got to every view holder
+    override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
+        val currentItem = getItem(position)
+        holder.bind(currentItem.foodname, currentItem.calories, currentItem.image)
+    }
+
+
     //We first define a view holder:
     class FoodViewHolder(itemView: View, listenerInterface: onClickListenerInterface) : RecyclerView.ViewHolder(itemView) {
 
@@ -61,16 +73,6 @@ class FoodEntriesListAdapter : ListAdapter<FoodEntry, FoodEntriesListAdapter.Foo
         }
     }
 
-    //We create the view holder
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
-        return FoodViewHolder.create(parent, mListenerInterface)
-    }
-
-    //We bind the data we got to every view holder
-    override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
-        val currentItem = getItem(position)
-        holder.bind(currentItem.foodname, currentItem.calories, currentItem.image)
-    }
 
 
 
