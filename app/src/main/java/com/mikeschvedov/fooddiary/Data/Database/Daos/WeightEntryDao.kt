@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface WeightEntryDao {
 
-    @Query("SELECT * FROM weight_table ORDER BY weightId DESC")
+    @Query("SELECT * FROM weight_table ORDER BY weightId ASC")
     fun getAllWeightEntries(): Flow<List<WeightEntry>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

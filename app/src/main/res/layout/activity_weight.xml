@@ -32,7 +32,7 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="4"
-            android:text="Weight Tracker"
+            android:text="מעקב משקל"
             android:textColor="@color/black"
             android:textSize="28dp"
             android:textStyle="bold" />
@@ -64,9 +64,9 @@
             android:layout_weight="1"
             android:background="@drawable/custom_input_field"
             android:gravity="center"
-            android:hint="משקל"
+            android:hint="קילוגרם"
             android:inputType="numberDecimal"
-            android:maxLength="4"
+            android:maxLength="5"
             android:paddingVertical="8dp"
             android:textColor="@color/darker_brown"
             android:textColorHint="@color/app_brown_1"
@@ -94,9 +94,8 @@
         android:id="@+id/recyclerview_weight"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="72dp"
         android:padding="@dimen/big_padding"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/graph_area"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info_panel"
@@ -105,7 +104,7 @@
     <LinearLayout
         android:id="@+id/graph_area"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:background="@color/app_brown_2"
         android:gravity="center"
         android:orientation="horizontal"
@@ -115,7 +114,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerview_weight">
 
-
+        <com.github.mikephil.charting.charts.LineChart
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="24dp"
+            android:id="@+id/weight_line_chart"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

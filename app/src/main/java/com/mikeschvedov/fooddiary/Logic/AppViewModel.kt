@@ -35,6 +35,7 @@ class AppViewModel(val repository: FoodRepository) : ViewModel() {
     fun delete(food: FoodEntry) = viewModelScope.launch {
         repository.delete(food)
     }
+
     /* Water Entry Related */
     fun getAllWaterEntriesByDate(date: String): LiveData<List<WaterEntry>> {
         return repository.getAllWaterEntriesByDate(date).asLiveData()
@@ -119,7 +120,7 @@ class AppViewModel(val repository: FoodRepository) : ViewModel() {
         }
     }
 
-/* -------------------------------- RELATED TO OTHER --------------------------------  */
+/* -------------------------------- CALCULATIONS AND MISC LOGIC --------------------------------  */
 
     suspend fun decideArrowVisibility(
         context: Context,
@@ -135,7 +136,21 @@ class AppViewModel(val repository: FoodRepository) : ViewModel() {
             }
         }
     }
+
+    fun isValidWeightInput(weightInput: String): Boolean {
+        // Return true if the input is not blank (not empty and no spaces) AND does not contain a dot character AND does not contain any zeros
+        return weightInput.isNotBlank()
+                && weightInput != "."
+                && weightInput != "0"
+                && !weightInput.contains("000")
+    }
 }
+
+/* -------------------------------- RElATED TO LINE CHART --------------------------------  */
+
+
+
+
 
 
 class AppViewModelFactory(private val repository: FoodRepository) : ViewModelProvider.Factory {

@@ -48,7 +48,7 @@ dependencies {
 
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
-    implementation 'com.android.car.ui:car-ui-lib:+'
+
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
@@ -77,5 +77,7 @@ dependencies {
     // Preferences DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
+    // Charts and Graphs
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
 
