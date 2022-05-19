@@ -6,7 +6,7 @@ import java.util.*
 class TodaysDate {
     companion object{
         // Creating an official format to use
-        var DAY_FORMAT = "dd/MM/yyyy"
+        var DAY_FORMAT = "dd/MM/yy"
         // Creating a Date object out of todays Calendar
         var todaysDate: Date = Calendar.getInstance().time
         // Formatting todays Date object to become a string

@@ -1,5 +1,7 @@
 package com.mikeschvedov.fooddiary.Presentation
 
+
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -10,9 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.AxisBase
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.*
+
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -23,12 +24,12 @@ import com.mikeschvedov.fooddiary.Logic.Adapters.WeightEntriesListAdapter
 import com.mikeschvedov.fooddiary.Logic.AppViewModel
 import com.mikeschvedov.fooddiary.Logic.AppViewModelFactory
 import com.mikeschvedov.fooddiary.R
+
 import com.mikeschvedov.fooddiary.Util.FoodApplication
 import com.mikeschvedov.fooddiary.Util.TodaysDate
 import com.mikeschvedov.fooddiary.databinding.ActivityWeightBinding
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class WeightActivity : AppCompatActivity() {
@@ -89,9 +90,8 @@ class WeightActivity : AppCompatActivity() {
                 builder.setMessage("האם למחוק את הרשומה?")
                 builder.setPositiveButton("כן") { dialog, which ->
                     appViewModel.deleteWeight(adapter.currentList[position])
-                    adapter.notifyItemRemoved(position)
                     // Calling the observer again //TODO maybe not needed?
-                    observeChangeInWeightRecyclerView(adapter)
+                    // observeChangeInWeightRecyclerView(adapter)
                     Log.e("DELETED", "DELETED ITEM: $adapter.currentList[position]")
                 }
                 builder.setNegativeButton("לא") { dialog, which ->
@@ -115,9 +115,11 @@ class WeightActivity : AppCompatActivity() {
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.granularity = 1F // spacing between each of x-axis values
             xAxis.valueFormatter = MyAxisFormatter(listOfDates)
+            Log.e("setUpLineChart", "listOfDates: $listOfDates")
 
             axisRight.isEnabled = false
             extraRightOffset = 30f
+
 
             legend.orientation = Legend.LegendOrientation.VERTICAL
             legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
@@ -132,7 +134,7 @@ class WeightActivity : AppCompatActivity() {
 
         val weekOneSales = LineDataSet(weightData(listOfWeight), "")
         weekOneSales.lineWidth = 3f
-        weekOneSales.valueTextSize = 15f
+        weekOneSales.valueTextSize = 10f
         weekOneSales.mode = LineDataSet.Mode.LINEAR
         weekOneSales.color = ContextCompat.getColor(this, R.color.darker_brown)
         //weekOneSales.valueTextColor = ContextCompat.getColor(this, R.color.green) // Color of values
@@ -145,7 +147,7 @@ class WeightActivity : AppCompatActivity() {
         dataSet.add(weekOneSales)
 
         val lineData = LineData(dataSet)
-
+        weightLineChart.setExtraOffsets(8f,8f,24f,8f)
         weightLineChart.data = lineData
         weightLineChart.invalidate()
 
@@ -161,35 +163,29 @@ class WeightActivity : AppCompatActivity() {
             entriesList.add(Entry(counter.toFloat(), item.toFloat()))
             counter += 1
         }
+        Log.e("weightData", "entriesList: $entriesList")
         return entriesList
     }
 
 
     inner class MyAxisFormatter(listOfDates: ArrayList<Date>) : IndexAxisValueFormatter() {
-        private var datesAsDates = listOfDates
-        private var datesAsStrings = arrayListOf<String>()
+        var list = listOfDates
 
-        private fun datesIntoStrings() {
-
-            // We take all Dates and transform them into Strings
-            for (date in datesAsDates) {
-                datesAsStrings.add(dateToFormatted(date))
-            }
-
-        }
 
         private fun dateToFormatted(dateObject: Date): String {
             return SimpleDateFormat(TodaysDate.DAY_FORMAT, Locale.getDefault()).format(dateObject)
         }
 
-        override fun getAxisLabel(value: Float, axis: AxisBase?): String? {
-            // We get the dates as strings
-            datesIntoStrings()
-            // The value is the index of the X axis
-            val index = value.toInt() + 1
-            // We return the strings according the index of the entry. So the X values (index) will display the correct Date - in the same index.
-            return datesAsStrings[index]
+        override fun getFormattedValue(value: Float): String {
+            if(value >= 0){
+                if (value <= list.size -1){
+                    return dateToFormatted(list[value.toInt()])
+                }
+                return ""
+            }
+            return ""
         }
+
     }
 
 
