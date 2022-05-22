@@ -45,10 +45,12 @@
         android:visibility="gone">
 
         <LinearLayout
+            android:id="@+id/display_calculation_by_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:padding="8dp">
 
             <LinearLayout
@@ -153,6 +155,122 @@
                 android:textColorHint="@color/app_brown_1"
                 android:textSize="12dp"
                 android:hint="גרם"
+                android:textStyle="bold"
+                android:inputType="number" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/display_calculation_by_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/total_calories_xml_by_unit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textColor="@color/darker_brown"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:text="קלוריות"
+                    android:textStyle="bold"
+                    android:textColor="@color/darker_brown"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="="
+
+                android:textStyle="bold"
+                android:textColor="@color/darker_brown"
+                android:textSize="26dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_calories_per_unit_xml"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="160"
+                    android:textStyle="bold"
+                    android:textColor="@color/darker_brown"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="קלוריות / יחידה"
+                    android:textStyle="bold"
+                    android:textColor="@color/darker_brown"
+                    android:textSize="8dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="12dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="X"
+                android:textStyle="bold"
+                android:textColor="@color/darker_brown"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/units_edittext_xml"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginEnd="22dp"
+                android:layout_weight="1"
+                android:paddingVertical="8dp"
+                android:gravity="center"
+                android:maxLength="4"
+                android:background="@drawable/custom_input_field"
+                android:textColor="@color/darker_brown"
+                android:textColorHint="@color/app_brown_1"
+                android:textSize="10dp"
+                android:hint="יחידות"
                 android:textStyle="bold"
                 android:inputType="number" />
 

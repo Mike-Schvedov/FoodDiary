@@ -15,55 +15,71 @@
     app:strokeColor="@color/black"
     app:strokeWidth="1dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal">
+
         <TextView
 
-            android:layout_width="wrap_content"
+            android:id="@+id/textView"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-         android:paddingTop="12dp"
-            android:paddingBottom="4dp"
             android:paddingHorizontal="4dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp"
             android:text="קלוריות"
             android:textColor="#4C4A4A"
-            android:textStyle="bold"
             android:textSize="7dp"
 
-            />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/gameTotalHours_xml"
+            app:layout_constraintEnd_toStartOf="@+id/gameTotalHours_xml"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/gameTotalHours_xml"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-android:paddingVertical="12dp"
-            android:paddingHorizontal="4dp"
             android:fontFamily="@font/secular_one"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="12dp"
             android:text="100"
-            android:textColor="#4C4A4A"
-            android:textStyle="bold"
-            android:textSize="18dp"
 
-         />
+            android:textColor="#4C4A4A"
+            android:textSize="18dp"
+            android:textStyle="bold"
+
+            app:layout_constraintEnd_toStartOf="@+id/gameName_xml"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
             android:id="@+id/gameName_xml"
-            android:layout_width="220dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
+            app:layout_constraintWidth_percent="0.6"
             android:fontFamily="@font/secular_one"
             android:gravity="center_vertical"
             android:padding="12dp"
             android:text="מוצר"
-            android:textSize="18dp"
             android:textColor="@color/black"
             android:textDirection="rtl"
-            android:textStyle="bold" />
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/gameImage_xml"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/gameTotalHours_xml"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -71,11 +87,15 @@ android:paddingVertical="12dp"
             android:layout_width="55dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="4dp"
             android:adjustViewBounds="true"
             android:paddingVertical="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/gameName_xml"
+            app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/circleImageView" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
