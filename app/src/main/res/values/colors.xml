@@ -17,4 +17,10 @@
     <color name="dark_blue">#202A60</color>
     <color name="lite_blue">#2196F3</color>
     <color name="black_trans">#99000000</color>
+
+    <color name="app_green_1">#0b8242</color>
+    <color name="app_green_3">#78b242</color>
+    <color name="dark_green">#05351B</color>
+
+
 </resources>

@@ -161,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/secular_one"
                 android:padding="4dp"
-                android:text="1500"
+                android:text="3000"
                 android:textColor="@color/dark_blue"
                 android:textSize="18dp"
                 android:textStyle="bold" />
